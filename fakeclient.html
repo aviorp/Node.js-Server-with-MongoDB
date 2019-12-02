@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="toastr.min.js" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fake Client</title>
+    <style>
+      * {
+        font-family: "Rubik", sans-serif;
+        font-size: 1rem;
+        color: #537ec5;
+      }
+
+      html,
+      body {
+        background: linear-gradient(195deg, #010038, #f39422);
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      fieldset {
+        width: 35vw;
+        transform: translate(50%, 100%);
+        border: 3px solid #293a80;
+      }
+    </style>
+  </head>
+
+  <body>
+    <fieldset>
+      <legend>Login Page</legend>
+      <form>
+        <label>
+          username:
+        </label>
+        <input type="text" class="username" />
+        <br />
+        <br />
+        <label>
+          password:
+        </label>
+        <input type="text" class="password" />
+        <input type="submit" value="Login" />
+      </form>
+    </fieldset>
+    <script>
+      document.addEventListener("submit", e => {
+        e.preventDefault();
+        let obj = {};
+        obj.username = document.querySelector(".username").value;
+        obj.password = document.querySelector(".password").value;
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(obj)
+        };
+        fetch("http://localhost:4000/auth/login", options)
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === "error") {
+              console.log(data.message);
+            } else if (data.status === "forbidden") {
+              alert(data.message);
+            } else {
+              localStorage.setItem("auth", data.message);
+              window.location.href = "/admin/test";
+            }
+          });
+      });
+    </script>
+  </body>
+</html>
