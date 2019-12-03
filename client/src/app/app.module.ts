@@ -11,6 +11,10 @@ import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ServerDetailsComponent } from './components/server-details/server-details.component';
+import { SearchComponent } from './components/search/search.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +26,15 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
     CartComponent,
     DashboardComponent,
     RegisterComponent,
-    HomepageComponent
+    HomepageComponent,
+    ServerDetailsComponent,
+    SearchComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
