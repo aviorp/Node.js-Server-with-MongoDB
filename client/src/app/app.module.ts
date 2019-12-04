@@ -15,6 +15,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServerDetailsComponent } from './components/server-details/server-details.component';
 import { SearchComponent } from './components/search/search.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { ProductsComponent } from './components/products/products.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     HomepageComponent,
     ServerDetailsComponent,
     SearchComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
