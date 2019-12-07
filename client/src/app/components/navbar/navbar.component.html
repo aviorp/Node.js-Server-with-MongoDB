@@ -15,7 +15,8 @@
 
         </ul>
         <div class="log">
-            <p>Welcome username &nbsp; <i class="fa fa-sign-out" title="Log Out"></i></p>
+            <p *ngIf="username">Welcome {{username}} &nbsp; <i class="fa fa-sign-out" title="Log Out"></i></p>
+            <p *ngIf="!username">Welcome Guest &nbsp; <i class="fa fa-sign-in" title=" Log In"></i></p>
 
         </div>
     </div>
