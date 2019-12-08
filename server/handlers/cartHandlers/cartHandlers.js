@@ -2,7 +2,7 @@ const Cart = require("../../models/cart.model");
 
 const getCart = (req, res) => {
   Cart.findOne(
-    { customerId: req.decodedUser.username, isActive: true },
+    { customerId: req.decodedUser.userId, isActive: true },
 
     async (err, result) => {
       if (err) {
@@ -21,7 +21,7 @@ const getCart = (req, res) => {
 
 const newCart = (req, res) => {
   let newCart = Cart({
-    customerId: req.decodedUser.username,
+    customerId: req.decodedUser.userId,
     products: req.body.products,
     isActive: true
   });
@@ -37,7 +37,7 @@ const newCart = (req, res) => {
 
 const updateCart = (req, res) => {
   Cart.updateOne(
-    { customerId: req.decodedUser.username, isActive: true },
+    { customerId: req.decodedUser.userId, isActive: true },
     { $push: { products: req.body.product } },
 
     { _v: 0 },
@@ -54,7 +54,7 @@ const updateCart = (req, res) => {
 
 const deleteProductFromArray = (req, res) => {
   Cart.updateOne(
-    { customerId: req.decodedUser.username, isActive: true },
+    { customerId: req.decodedUser.userId, isActive: true },
     { $pull: { products: req.body.product } },
 
     { _v: 0 },
@@ -71,7 +71,7 @@ const deleteProductFromArray = (req, res) => {
 
 const clearCart = (req, res) => {
   Cart.updateOne(
-    { customerId: req.decodedUser.username, isActive: true },
+    { customerId: req.decodedUser.userId, isActive: true },
     { $set: { products: [] } },
     { _v: 0 },
     async (err, result) => {
@@ -87,7 +87,7 @@ const clearCart = (req, res) => {
 
 const buy = (req, res) => {
   Cart.updateOne(
-    { customerId: req.decodedUser.username },
+    { customerId: req.decodedUser.userId },
     { $set: { isActive: false } },
     async (err, result) => {
       if (err) {

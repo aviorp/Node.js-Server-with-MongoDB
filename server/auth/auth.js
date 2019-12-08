@@ -29,6 +29,7 @@ const admin = (req, res, next) => {
     });
   }
 };
+
 const user = (req, res, next) => {
   let token = req.header("auth");
   if (!token) {

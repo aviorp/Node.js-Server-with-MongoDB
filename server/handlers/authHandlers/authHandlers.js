@@ -52,6 +52,7 @@ const login = (req, res) => {
         message: "Username or Password invalid."
       });
     } else {
+      const userId = result._id
       const isAdmin = result.isAdmin;
       const validPassword = bcrypt.compareSync(password, result.password);
       if (validPassword === false) {
@@ -60,7 +61,8 @@ const login = (req, res) => {
           message: "Username or Password invalid."
         });
       } else if (validPassword) {
-        jwt.sign({ username, password, isAdmin }, "secretkey", (err, token) => {
+        result
+        jwt.sign({ userId, username, password, isAdmin }, "secretkey", (err, token) => {
           if (err) {
             res.json({
               status: "error",

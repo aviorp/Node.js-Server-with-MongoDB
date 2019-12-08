@@ -28,7 +28,7 @@ const getDateForShipping = (req, res) => {
 //TODO Aggregate and replace
 const createOrder = (req, res) => {
   Cart.findOne(
-    { customerId: req.decodedUser.username, isActive: true },
+    { customerId: req.decodedUser.userId, isActive: true },
     { _id: 1 },
     (err, result) => {
       if (err) {
